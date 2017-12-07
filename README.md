@@ -1,2 +1,3 @@
 # my_project
-This is repository contains examples of my code.
+This repository contains examples of my code.
+Check it out!
