@@ -1,7 +1,7 @@
-/*
-    This program checks the string on the palindrome.
-    You can use it, enter ./palindrome <you string>
-*/
+/**
+ * This program checks the string on the palindrome.
+ * You can use it, enter ./palindrome <you string>
+ */
 
 #include <stdio.h>  // Nedeed for 'printf'
 #include <string.h> // Nedeed for 'strlen'
