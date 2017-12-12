@@ -1,3 +1,7 @@
+"""
+    This program
+"""
+
 n = int(input("Pleaze, give positive integer\n"))
 
 def main():
