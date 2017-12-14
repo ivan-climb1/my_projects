@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
     if (argc != 2)
     {
         printf("Sorry. Pleaze, give me a one argument. Try again.\n");
-        return 1;
+        return 2;
     }
     
     printf("Excelent, I will check you string - '%s' on the palindrome!\n", *(argv + 1));
