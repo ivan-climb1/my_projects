@@ -2,6 +2,9 @@
     This program ask the user enter a positive integer,
     then calculates the factorial of a number.
 """
+
+import sys # Nedeed for 'exit()'
+
 def main():
 
     # request a string from the user
@@ -14,6 +17,12 @@ def main():
 
     # get an integer number from a string
     number = int(number)
+
+    # if number > 996, exit program. Otherwise
+    # we get 'RecursionError'
+    if number > 996:
+        print("Sorry, but the number must be < 997")
+        sys.exit(1)
 
     # call the function fac(number), and print factorial
     print("The factorial of this number", fac(number))
