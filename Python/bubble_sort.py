@@ -25,7 +25,7 @@ def main():
 # This function check the string on integer
 def Check_numbers(numbers):
 
-    # nedeed to access list element
+    # nedeed to access elements of list
     i = 0
     for number in numbers:
         # if number not integer then exit() the programm
