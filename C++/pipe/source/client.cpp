@@ -3,7 +3,7 @@
 int main()
 {
 	const std::string exit("exit");
-	const std::string pipe_name("test_pipe");
+	const std::string pipe_name("pipe_for_chat");
 	Pipe_work pipe(pipe_name);
 	
 	if (!pipe.open_pipe_for_writing())

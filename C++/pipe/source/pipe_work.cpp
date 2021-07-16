@@ -9,12 +9,10 @@
 Pipe_work::Pipe_work(const std::string pipe_name):
 	m_pipe_name{pipe_name}
 {
-	std::cout << "Pipe_work constructor." << std::endl;
 }
 
 Pipe_work::~Pipe_work()
 {
-	std::cout << "Pipe_work destructor." << std::endl;
 	close_pipe();
 }
 
@@ -44,10 +42,7 @@ void Pipe_work::delete_pipe()
 
 bool Pipe_work::open_pipe_for_reading()
 {
-	std::cout << "Before open for reading" << std::endl;
 	m_pipe.open(m_pipe_name, std::ios_base::in);
-	std::cout << "After open for reading" << std::endl;
-	
 	return if_pipe_open();
 }
 

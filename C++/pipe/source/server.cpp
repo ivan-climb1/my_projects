@@ -2,7 +2,7 @@
 
 int main()
 {
-	std::string pipe_name("test_pipe");
+	std::string pipe_name("pipe_for_chat");
 	Pipe_work pipe(pipe_name);
 	
 	if (!pipe.create_pipe())
