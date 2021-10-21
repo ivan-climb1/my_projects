@@ -9,7 +9,7 @@
 class Pipe_work
 {
 public:
-	Pipe_work(std::string pipe_name);
+	Pipe_work(const std::string& pipe_name);
 	~Pipe_work();
 	
 	bool create_pipe();

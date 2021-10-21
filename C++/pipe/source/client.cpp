@@ -11,7 +11,7 @@ int main()
 		return 1;
 	}
 	
-	std::cout << "Hello! This is client.\nIf your want exit from program type 'exit'" << std::endl;
+	std::cout << "Hello! I am a client.\nIf your want exit from program type 'exit'" << std::endl;
 	
 	while (true)
 	{

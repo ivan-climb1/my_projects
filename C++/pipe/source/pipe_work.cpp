@@ -6,7 +6,7 @@
 
 #include "pipe_work.h"
 
-Pipe_work::Pipe_work(const std::string pipe_name):
+Pipe_work::Pipe_work(const std::string& pipe_name):
 	m_pipe_name{pipe_name}
 {
 }
