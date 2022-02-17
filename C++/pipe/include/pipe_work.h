@@ -16,7 +16,7 @@ public:
     void delete_pipe();
     bool open_pipe_for_reading();
     bool open_pipe_for_writing();
-    bool write_to_pipe(std::string letter);
+    bool write_to_pipe(const std::string& letter);
     std::tuple<std::string, bool, bool> read_from_pipe();
 	
 private:

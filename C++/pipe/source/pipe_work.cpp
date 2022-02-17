@@ -60,15 +60,14 @@ bool Pipe_work::open_pipe_for_writing()
     return if_pipe_open();
 }
 
-bool Pipe_work::write_to_pipe(std::string letter)
+bool Pipe_work::write_to_pipe(const std::string& letter)
 {
     if (!if_pipe_open())
     {
         return false;
     }
 
-    letter.append("\n");
-    m_pipe << letter;
+    m_pipe << letter << "\n";
     m_pipe.flush();
     return true;
 }
