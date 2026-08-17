@@ -8,6 +8,7 @@ set(files_s
 	IParticipant.h
 
 	Subject.h
+	Subject.cpp
 )
 
 add_executable(observer ${files_s})
