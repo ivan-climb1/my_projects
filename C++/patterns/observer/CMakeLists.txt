@@ -9,6 +9,13 @@ set(files_s
 
 	Subject.h
 	Subject.cpp
+
+	TemperatureManager.h
+	TemperatureManager.cpp
+	PressureManager.h
+	PressureManager.cpp
+	HumidityManager.h
+	HumidityManager.cpp
 )
 
 add_executable(observer ${files_s})
