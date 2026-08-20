@@ -18,7 +18,7 @@ Example:
 
 ### How test
 
-Run in terminal executionable file observer
+Run in terminal executionable file *observer*
 
 Example:
 
