@@ -7,6 +7,8 @@ namespace
 		weather::WeatherData{19.5, 684.3, 80.7},
 		weather::WeatherData{30.6, 745.8, 77.0}
 	};
+
+	constexpr size_t sleep_time{3};
 }
 
 namespace weather
@@ -48,7 +50,7 @@ namespace weather
 
 			if (i != allData.size() - 1)
 			{
-				std::this_thread::sleep_for(std::chrono::seconds(3));
+				std::this_thread::sleep_for(std::chrono::seconds(sleep_time));
 			}
 		}
 	}
