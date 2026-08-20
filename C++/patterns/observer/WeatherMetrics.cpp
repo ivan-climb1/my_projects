@@ -5,38 +5,52 @@
 namespace
 {
 	std::vector<WeatherData> allData{
-		WeatherData{25.0, 742.9, 12.7},
-		WeatherData{19.5, 684.3, 43.7},
-		WeatherData{30.6, 745.8, 33.0}
+		WeatherData{25.0, 742.9, 67.7},
+		WeatherData{19.5, 684.3, 80.7},
+		WeatherData{30.6, 745.8, 77.0}
 	};
 }
 
-WeatherMetrics::WeatherMetrics():
-	m_thread{&WeatherMetrics::updateMetrics, this}
+namespace weather
 {
 
-}
-
-WeatherMetrics::~WeatherMetrics()
-{
-	m_thread.join();
-}
-
-void WeatherMetrics::addCallBack(std::function<void(const WeatherData& weatherData)> callBack)
-{
-	m_callBack = callBack;
-}
-
-void WeatherMetrics::removeCallBack()
-{
-	m_callBack = nullptr;
-}
-
-void WeatherMetrics::updateMetrics()
-{
-	for (const auto& data : allData)
+	WeatherMetrics::WeatherMetrics():
+		m_thread{&WeatherMetrics::updateMetrics, this}
 	{
-		m_callBack(data);
-		std::this_thread::sleep_for(std::chrono::seconds(3));
+
 	}
+
+	WeatherMetrics::~WeatherMetrics()
+	{
+		m_thread.join();
+	}
+
+	void WeatherMetrics::addCallBack(std::function<void(const WeatherData& weatherData)> callBack)
+	{
+		std::lock_guard lock{m_mutex};
+
+		m_callBack = callBack;
+	}
+
+	void WeatherMetrics::removeCallBack()
+	{
+		std::lock_guard lock{m_mutex};
+
+		m_callBack = nullptr;
+	}
+
+	void WeatherMetrics::updateMetrics()
+	{
+		for (const auto& data : allData)
+		{
+			{
+				std::lock_guard lock{m_mutex};
+
+				m_callBack(data);
+			}
+
+			std::this_thread::sleep_for(std::chrono::seconds(3));
+		}
+	}
+
 }

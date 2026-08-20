@@ -3,23 +3,28 @@
 
 #include "IParticipant.h"
 
+#include <mutex>
 #include <thread>
 #include <functional>
 
-class WeatherMetrics
+namespace weather
 {
-public:
-	WeatherMetrics();
-	~WeatherMetrics();
+	class WeatherMetrics
+	{
+	public:
+		WeatherMetrics();
+		~WeatherMetrics();
 
-	void addCallBack(std::function<void(const WeatherData& weatherData)> callBack);
-	void removeCallBack();
+		void addCallBack(std::function<void(const WeatherData& weatherData)> callBack);
+		void removeCallBack();
 
-private:
-	std::thread m_thread;
-	std::function<void(const WeatherData& weatherData)> m_callBack;
+	private:
+		std::mutex m_mutex;
+		std::thread m_thread;
+		std::function<void(const WeatherData& weatherData)> m_callBack;
 
-	void updateMetrics();
-};
+		void updateMetrics();
+	};
+}
 
 #endif /* WEATHER_METRICS_H */

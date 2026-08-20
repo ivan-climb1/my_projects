@@ -2,18 +2,19 @@
 #include "IParticipant.h"
 
 #include "WeatherController.h"
-#include "TemperatureManager.h"
-
-#include <iostream>
+#include "ParticipantFactory.h"
 
 int main()
 {
-	std::cout << "Hello, world!" << std::endl;
-
 	std::shared_ptr<ISubject> subject{std::make_shared<WeatherController>()};
-	std::shared_ptr<IParticipant> tempParticipant{std::make_shared<TemperatureManager>()};
 
-	subject->addParticipant(tempParticipant);
+	auto temperatureManager{participnatFactory::createManager(Manager::Temperature)};
+	auto pressureManager{participnatFactory::createManager(Manager::Pressure)};
+	auto humidityManager{participnatFactory::createManager(Manager::Humidity)};
+
+	subject->addParticipant(temperatureManager);
+	subject->addParticipant(pressureManager);
+	subject->addParticipant(humidityManager);
 
 	return 0;
 }

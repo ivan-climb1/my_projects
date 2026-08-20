@@ -2,39 +2,55 @@
 
 #include <iostream>
 
-WeatherController::WeatherController():
-	m_weatherData{25.5, 34.7, 89.3}
+namespace weather
 {
-	m_weatherMetrics.addCallBack([this](const WeatherData& weatherData)
-	{
-		updateWeatherData(weatherData);
-	});
-}
 
-void WeatherController::addParticipant(const std::shared_ptr<IParticipant>& participant)
-{
-	auto [_, isEmplaced]{m_participants.emplace(participant)};
-	if (!isEmplaced)
+	WeatherController::WeatherController()
 	{
-		std::cout << "Error: Participant already added" << std::endl;
+		m_weatherMetrics.addCallBack([this](const WeatherData& weatherData)
+		{
+			updateWeatherData(weatherData);
+		});
 	}
-}
 
-void WeatherController::removeParticipant(const std::shared_ptr<IParticipant>& participant)
-{
-	m_participants.erase(participant);
-}
-
-void WeatherController::notifyAllParticipants()
-{
-	for (const auto& participant : m_participants)
+	void WeatherController::addParticipant(const std::shared_ptr<IParticipant>& participant)
 	{
-		participant->update(m_weatherData);
-	}
-}
+		std::lock_guard lock{m_mutex};
 
-void WeatherController::updateWeatherData(const WeatherData& weatherData)
-{
-	m_weatherData = weatherData;
-	notifyAllParticipants();
+		auto [_, isEmplaced]{m_participants.emplace(participant)};
+		if (!isEmplaced)
+		{
+			std::cout << "Error: Participant already added" << std::endl;
+		}
+	}
+
+	void WeatherController::removeParticipant(const std::shared_ptr<IParticipant>& participant)
+	{
+		std::lock_guard lock{m_mutex};
+
+		m_participants.erase(participant);
+	}
+
+	void WeatherController::notifyAllParticipants()
+	{
+		std::lock_guard lock{m_mutex};
+
+		for (const auto& participant : m_participants)
+		{
+			participant->update(m_weatherData);
+		}
+		std::cout << std::endl;
+	}
+
+	void WeatherController::updateWeatherData(const WeatherData& weatherData)
+	{
+		{
+			std::lock_guard lock{m_mutex};
+
+			m_weatherData = weatherData;
+		}
+
+		notifyAllParticipants();
+	}
+
 }

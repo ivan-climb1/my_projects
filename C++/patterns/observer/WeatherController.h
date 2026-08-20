@@ -5,23 +5,29 @@
 
 #include "WeatherMetrics.h"
 
+#include <mutex>
 #include <unordered_set>
 
-class WeatherController: public ISubject
+namespace weather
 {
-public:
-	WeatherController();
+	class WeatherController: public ISubject
+	{
+	public:
+		WeatherController();
 
-	virtual void addParticipant(const std::shared_ptr<IParticipant>& participant) override;
-	virtual void removeParticipant(const std::shared_ptr<IParticipant>& participant) override;
-	virtual void notifyAllParticipants() override;
+		virtual void addParticipant(const std::shared_ptr<IParticipant>& participant) override;
+		virtual void removeParticipant(const std::shared_ptr<IParticipant>& participant) override;
+		virtual void notifyAllParticipants() override;
 
-private:
-	std::unordered_set<std::shared_ptr<IParticipant>> m_participants;
-	WeatherData m_weatherData;
-	WeatherMetrics m_weatherMetrics;
+	private:
+		std::mutex m_mutex;
+		std::unordered_set<std::shared_ptr<IParticipant>> m_participants;
 
-	void updateWeatherData(const WeatherData& weatherData);
-};
+		WeatherData m_weatherData;
+		WeatherMetrics m_weatherMetrics;
+
+		void updateWeatherData(const WeatherData& weatherData);
+	};
+}
 
 #endif /* WEATHER_CONTROLLER_H */

@@ -13,6 +13,11 @@ set(files_s
 	WeatherMetrics.h
 	WeatherMetrics.cpp
 
+	WeatherData.h
+
+	ParticipantFactory.h
+	ParticipantFactory.cpp
+
 	TemperatureManager.h
 	TemperatureManager.cpp
 	PressureManager.h
