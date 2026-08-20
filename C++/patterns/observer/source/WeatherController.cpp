@@ -4,7 +4,6 @@
 
 namespace weather
 {
-
 	WeatherController::WeatherController()
 	{
 		m_weatherMetrics.addCallBack([this](const WeatherData& weatherData)
@@ -13,7 +12,7 @@ namespace weather
 		});
 	}
 
-	void WeatherController::addParticipant(const std::shared_ptr<IParticipant>& participant)
+	void WeatherController::addParticipant(const std::shared_ptr<observer::IParticipant>& participant)
 	{
 		std::lock_guard lock{m_mutex};
 
@@ -24,7 +23,7 @@ namespace weather
 		}
 	}
 
-	void WeatherController::removeParticipant(const std::shared_ptr<IParticipant>& participant)
+	void WeatherController::removeParticipant(const std::shared_ptr<observer::IParticipant>& participant)
 	{
 		std::lock_guard lock{m_mutex};
 
@@ -52,5 +51,4 @@ namespace weather
 
 		notifyAllParticipants();
 	}
-
 }

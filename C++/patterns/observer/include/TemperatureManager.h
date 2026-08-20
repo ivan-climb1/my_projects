@@ -3,12 +3,12 @@
 
 #include "IParticipant.h"
 
-class TemperatureManager: public IParticipant
+class TemperatureManager: public observer::IParticipant
 {
 public:
 	TemperatureManager() = default;
 
-	virtual void update(const WeatherData& weatherData) override;
+	virtual void update(const weather::WeatherData& weatherData) override;
 };
 
 #endif /* TEMPERATURE_MANAGER_H */

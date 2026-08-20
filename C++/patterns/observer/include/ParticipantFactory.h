@@ -7,7 +7,7 @@
 
 namespace participnatFactory
 {
-	std::shared_ptr<IParticipant> createManager(Manager manager);
+	std::shared_ptr<observer::IParticipant> createManager(weather::Manager manager);
 }
 
 #endif/* PARTICIPANT_FACTORY_H */

@@ -6,8 +6,9 @@
 
 #include <iostream>
 
-std::shared_ptr<IParticipant> participnatFactory::createManager(Manager manager)
+std::shared_ptr<observer::IParticipant> participnatFactory::createManager(weather::Manager manager)
 {
+	using namespace weather;
 	switch (manager)
 	{
 		case Manager::Temperature:

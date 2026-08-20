@@ -1,19 +1,16 @@
 #include "WeatherMetrics.h"
 
-
-
 namespace
 {
-	std::vector<WeatherData> allData{
-		WeatherData{25.0, 742.9, 67.7},
-		WeatherData{19.5, 684.3, 80.7},
-		WeatherData{30.6, 745.8, 77.0}
+	std::vector<weather::WeatherData> allData{
+		weather::WeatherData{25.0, 742.9, 67.7},
+		weather::WeatherData{19.5, 684.3, 80.7},
+		weather::WeatherData{30.6, 745.8, 77.0}
 	};
 }
 
 namespace weather
 {
-
 	WeatherMetrics::WeatherMetrics():
 		m_thread{&WeatherMetrics::updateMetrics, this}
 	{
@@ -41,16 +38,18 @@ namespace weather
 
 	void WeatherMetrics::updateMetrics()
 	{
-		for (const auto& data : allData)
+		for (size_t i{0}; i < allData.size(); ++i)
 		{
 			{
 				std::lock_guard lock{m_mutex};
 
-				m_callBack(data);
+				m_callBack(allData[i]);
 			}
 
-			std::this_thread::sleep_for(std::chrono::seconds(3));
+			if (i != allData.size() - 1)
+			{
+				std::this_thread::sleep_for(std::chrono::seconds(3));
+			}
 		}
 	}
-
 }

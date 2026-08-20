@@ -1,7 +1,7 @@
 #ifndef WEATHER_METRICS_H
 #define WEATHER_METRICS_H
 
-#include "IParticipant.h"
+#include "WeatherData.h"
 
 #include <mutex>
 #include <thread>
