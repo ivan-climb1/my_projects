@@ -7,8 +7,11 @@ set(files_s
 	ISubject.h
 	IParticipant.h
 
-	Subject.h
-	Subject.cpp
+	WeatherController.h
+	WeatherController.cpp
+
+	WeatherMetrics.h
+	WeatherMetrics.cpp
 
 	TemperatureManager.h
 	TemperatureManager.cpp
