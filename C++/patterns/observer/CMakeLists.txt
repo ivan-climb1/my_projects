@@ -12,5 +12,5 @@ add_executable(${project_name} ${source_files} ${header_files})
 target_include_directories(${project_name} PRIVATE "include")
 target_include_directories(${project_name} PRIVATE "include/interface")
 
-target_compile_options(${project_name} PRIVATE -Wall -Wextra -Werror -pedantic)
 target_compile_features(${project_name} PRIVATE cxx_std_20)
+target_compile_options(${project_name} PRIVATE -Wall -Wextra -Werror -pedantic)
