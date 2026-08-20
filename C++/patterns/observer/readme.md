@@ -16,7 +16,7 @@ Example:
 
 `make -j number_of_threads`
 
-### How test
+### How to test
 
 Run in terminal executionable file *observer*
 
