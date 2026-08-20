@@ -1,0 +1,34 @@
+# All *.swp files
+*.swp
+
+# Build directories
+build/
+Build/
+build-*/
+
+# CMake generated files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+install_manifest.txt
+compile_commands.json
+
+# test output & cache
+Testing/
+.cache/
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+*.so.*
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Qt Creator files
+.qtcreator/
