@@ -17,7 +17,7 @@ public:
 	size_t getValue();
 
 private:
-	Logger() = default;
+	Logger();
 
 	size_t m_value;
 };
